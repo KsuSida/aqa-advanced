@@ -17,4 +17,4 @@ const area2 = (width, height) =>{
     return width * height;
 };
 
-console.log(area2(2,11));
+console.log(area2(2,12));
