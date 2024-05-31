@@ -19,7 +19,7 @@ export class EBook extends Book {
         console.log(`${this.title}, ${this.author}, ${this.year}, ${this.format}`)
     };
     static bookUpgrade(book, format){
-        const b = new EBook(book.title, book.author, book.year, format)
-        console.log(b)
+        const b = new EBook(book.title, book.author, book.year, format);
+        return b;
     }
 };

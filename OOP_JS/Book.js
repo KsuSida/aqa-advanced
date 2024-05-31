@@ -43,6 +43,6 @@ export class Book{
             if(a.year < minYear.year){
                 minYear = a}
         }
-        console.log(minYear);
+        return minYear;
     };
 };

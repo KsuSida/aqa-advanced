@@ -22,5 +22,5 @@ let booksArr1 = [
     {title: ebook1.title, author: ebook1.author, year: ebook1.year, format: ebook1.format},
     {title: ebook2.title, author: ebook2.author, year: ebook2.year, format: ebook2.format}
 ];
-Book.yearCompare(booksArr1);
-EBook.bookUpgrade(book1, ".pdf")
+console.log(Book.yearCompare(booksArr1));
+console.log(EBook.bookUpgrade(book1, ".pdf"));
