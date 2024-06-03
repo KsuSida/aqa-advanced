@@ -21,13 +21,12 @@ console.log(spaceshipNames);
 
 // part 2
 
-const response = await fetch('https://swapi.dev/api/people/14');
-const data = await response.json();
-const shipLinks = data.starships;
-for (let i = 0; i < shipLinks.length; i++){
-       (async()=> {
-        const res = await fetch(`${shipLinks[i]}`);
-        const body = await res.json();
-        console.log(body.name); 
-       })()
+const responseHalo = await fetch('https://swapi.dev/api/people/14');
+const dataHalo = await responseHalo.json();
+const starshipsURL = dataHalo.starships;
+for (const starshipURL of starshipsURL){
+    const starshipResponse = await fetch(starshipURL);
+    const starshipData = await starshipResponse.json();
+    const starshipName = starshipData.name;
+    console.log(starshipName);
 }

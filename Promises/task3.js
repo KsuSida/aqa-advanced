@@ -1,38 +1,22 @@
-import {Planet} from "./Planets.js";
+const results = [];
 
-const response = await fetch(`https://swapi.dev/api/films/3`);
-const data = await response.json();
-const planets = data.planets;
-const plNames =[];
-const residentLinks =[];
-const residentNames =[];
-const residentNames1 =[];
+const filmResponse = await fetch(`https://swapi.dev/api/films/3`);
+const filmData = await filmResponse.json();
+const planetsURL = filmData.planets;
 
-for (let i = 0; i < planets.length; i++){
-    async function getPlNames(){
-     const res = await fetch(`${planets[i]}`);
-     const body = await res.json();
-     return body; 
+for (const planetURL of planetsURL){
+    const planetResponse = await fetch(planetURL);
+    const planetData = await planetResponse.json();
+    const planetInfo = {
+        planetName: planetData.name,
+        residents: [],
     }
-    const body = await getPlNames();
-    await plNames.push(body.name);
-    await residentLinks.push(body.residents)
+   const residentsURLs = planetData.residents;
+   for (const residentURL of residentsURLs){
+        const residentResponse = await fetch(residentURL);
+        const residentData = await residentResponse.json();
+        planetInfo.residents.push(residentData.name)
+    }
+    results.push(planetInfo);
 }
-
-for (let i = 0; i < residentLinks.length; i++){
-    for (let a = 0; a < residentLinks[i].length; a++){
-    async function getResNames(){
-     const res = await fetch(`${residentLinks[i][a]}`);
-     const body = await res.json();
-     return body; 
-    }
-    //console.log(`${residentLinks[i][a]}`);
-    const namesRes = await getResNames();
-    const nameR = namesRes.name;
-    await residentNames[a].push(nameR);
-    }
-
-await residentNames1[i].push(residentNames);
-}
-// console.log(residentNames);
-console.log(residentNames);
+console.log(results);
